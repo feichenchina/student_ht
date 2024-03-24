@@ -1,0 +1,1159 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "教务系统",
+        "description": "教务系统接口文档",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost"
+        }
+    ],
+    "paths": {
+        "/api/teacher/add_bill": {
+            "post": {
+                "tags": [
+                    "账单管理"
+                ],
+                "summary": "新增账单",
+                "operationId": "37057c4818e7861805c382c841615c22",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "course_id"
+                                ],
+                                "properties": {
+                                    "course_id": {
+                                        "description": "课程id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "description": "返回码",
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "description": "错误信息",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "返回数据",
+                                            "type": "object"
+                                        },
+                                        "timestamp": {
+                                            "description": "服务器响应的时间戳",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/teacher/list_bill": {
+            "post": {
+                "tags": [
+                    "账单管理"
+                ],
+                "summary": "账单列表",
+                "operationId": "7b800a349e2150125a129aa438885288",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "page_size",
+                                    "page"
+                                ],
+                                "properties": {
+                                    "page_size": {
+                                        "description": "每页显示几条信息",
+                                        "type": "integer"
+                                    },
+                                    "page": {
+                                        "description": "当前显示第几页",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "description": "返回码",
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "description": "错误信息",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "返回数据",
+                                            "properties": {
+                                                "meta": {
+                                                    "description": "元信息",
+                                                    "properties": {
+                                                        "count": {
+                                                            "description": "当前页的项目数",
+                                                            "type": "integer"
+                                                        },
+                                                        "perPage": {
+                                                            "description": "每页显示的项目数",
+                                                            "type": "integer"
+                                                        },
+                                                        "currentPage": {
+                                                            "description": "当前页码",
+                                                            "type": "integer"
+                                                        },
+                                                        "lastPage": {
+                                                            "description": "最后一页的页码",
+                                                            "type": "integer"
+                                                        },
+                                                        "total": {
+                                                            "description": "总数",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "list": {
+                                                    "description": "数据列表",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "description": "唯一标识",
+                                                                "type": "integer"
+                                                            },
+                                                            "course_id": {
+                                                                "description": "课程id",
+                                                                "type": "integer"
+                                                            },
+                                                            "created_at": {
+                                                                "description": "创建时间",
+                                                                "type": "string"
+                                                            },
+                                                            "status": {
+                                                                "description": "账单状态",
+                                                                "type": "integer"
+                                                            },
+                                                            "status_description": {
+                                                                "description": "账单状态-中文描述",
+                                                                "type": "string"
+                                                            },
+                                                            "course": {
+                                                                "description": "课程详情",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "description": "唯一标识",
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "date": {
+                                                                        "description": "日期",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "course_name": {
+                                                                        "description": "课程名称",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "cost": {
+                                                                        "description": "费用",
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "timestamp": {
+                                            "description": "服务器响应的时间戳",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/teacher/send_bill": {
+            "get": {
+                "tags": [
+                    "账单管理"
+                ],
+                "summary": "发送账单",
+                "operationId": "eec9ec2ebf0b51da360a00ce4f7a277f",
+                "parameters": [
+                    {
+                        "name": "bill_id",
+                        "in": "query",
+                        "description": "账单id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "description": "返回码",
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "description": "错误信息",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "返回数据",
+                                            "type": "object"
+                                        },
+                                        "timestamp": {
+                                            "description": "服务器响应的时间戳",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/student/get_student_bill": {
+            "get": {
+                "tags": [
+                    "我的账单"
+                ],
+                "summary": "获取当前用户账单列表",
+                "operationId": "07ef3368be75dae864bef12a9d440f74",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "页数"
+                    },
+                    {
+                        "name": "page_size",
+                        "in": "query",
+                        "description": "每页数量"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "description": "返回码",
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "description": "错误信息",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "返回数据",
+                                            "properties": {
+                                                "meta": {
+                                                    "description": "元信息",
+                                                    "properties": {
+                                                        "count": {
+                                                            "description": "当前页的项目数",
+                                                            "type": "integer"
+                                                        },
+                                                        "perPage": {
+                                                            "description": "每页显示的项目数",
+                                                            "type": "integer"
+                                                        },
+                                                        "currentPage": {
+                                                            "description": "当前页码",
+                                                            "type": "integer"
+                                                        },
+                                                        "lastPage": {
+                                                            "description": "最后一页的页码",
+                                                            "type": "integer"
+                                                        },
+                                                        "total": {
+                                                            "description": "总数",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "list": {
+                                                    "description": "数据列表",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "description": "唯一标识",
+                                                                "type": "integer"
+                                                            },
+                                                            "bill_id": {
+                                                                "description": "账单唯一标识",
+                                                                "type": "integer"
+                                                            },
+                                                            "status": {
+                                                                "description": "支付状态",
+                                                                "type": "integer"
+                                                            },
+                                                            "status_description": {
+                                                                "description": "支付状态中文描述",
+                                                                "type": "string"
+                                                            },
+                                                            "bill": {
+                                                                "description": "账单详情",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "description": "唯一标识",
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "course_id": {
+                                                                        "description": "课程id",
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "created_at": {
+                                                                        "description": "创建时间",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "status": {
+                                                                        "description": "账单是否已发送",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "status_description": {
+                                                                        "description": "账单是否已发送中文描述",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "course": {
+                                                                        "description": "课程详情",
+                                                                        "properties": {
+                                                                            "id": {
+                                                                                "description": "唯一标识",
+                                                                                "type": "integer"
+                                                                            },
+                                                                            "created_at": {
+                                                                                "description": "创建时间",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "cost": {
+                                                                                "description": "费用",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "course_name": {
+                                                                                "description": "课程名",
+                                                                                "type": "string"
+                                                                            },
+                                                                            "date": {
+                                                                                "description": "日期",
+                                                                                "type": "string"
+                                                                            }
+                                                                        },
+                                                                        "type": "object"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "timestamp": {
+                                            "description": "服务器响应的时间戳",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/teacher/course_list": {
+            "get": {
+                "tags": [
+                    "课程管理"
+                ],
+                "summary": "课程列表",
+                "operationId": "4a8cbc03cdddfa644fbc8e017766bdf5",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "页数"
+                    },
+                    {
+                        "name": "page_size",
+                        "in": "query",
+                        "description": "每页数量"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "description": "返回码",
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "description": "错误信息",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "返回数据",
+                                            "properties": {
+                                                "meta": {
+                                                    "description": "元信息",
+                                                    "properties": {
+                                                        "count": {
+                                                            "description": "当前页的项目数",
+                                                            "type": "integer"
+                                                        },
+                                                        "perPage": {
+                                                            "description": "每页显示的项目数",
+                                                            "type": "integer"
+                                                        },
+                                                        "currentPage": {
+                                                            "description": "当前页码",
+                                                            "type": "integer"
+                                                        },
+                                                        "lastPage": {
+                                                            "description": "最后一页的页码",
+                                                            "type": "integer"
+                                                        },
+                                                        "total": {
+                                                            "description": "总数",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "list": {
+                                                    "description": "数据列表",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "description": "唯一标识",
+                                                                "type": "integer"
+                                                            },
+                                                            "date": {
+                                                                "description": "日期",
+                                                                "type": "string"
+                                                            },
+                                                            "course_name": {
+                                                                "description": "课程名",
+                                                                "type": "string"
+                                                            },
+                                                            "cost": {
+                                                                "description": "费用",
+                                                                "type": "string"
+                                                            },
+                                                            "bill_id": {
+                                                                "description": "账单id",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "timestamp": {
+                                            "description": "服务器响应的时间戳",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/teacher/course_add": {
+            "post": {
+                "tags": [
+                    "课程管理"
+                ],
+                "summary": "新增课程",
+                "operationId": "7e0e2ac879d9c8266cf2ba1501b8a29d",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "course_name",
+                                    "cost",
+                                    "date"
+                                ],
+                                "properties": {
+                                    "course_name": {
+                                        "description": "课程名",
+                                        "type": "string"
+                                    },
+                                    "cost": {
+                                        "description": "费用",
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "description": "日期",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "description": "返回码",
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "description": "错误信息",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "返回数据",
+                                            "type": "object"
+                                        },
+                                        "timestamp": {
+                                            "description": "服务器响应的时间戳",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "用户认证"
+                ],
+                "summary": "用户登录",
+                "operationId": "f2b0ee282fda61d03c7c558a2add9d61",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "username",
+                                    "password",
+                                    "type"
+                                ],
+                                "properties": {
+                                    "username": {
+                                        "description": "用户名",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "密码",
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "description": "类型[teacher:教师,student:学生]",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "description": "返回码",
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "description": "错误信息",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "返回数据",
+                                            "properties": {
+                                                "token": {
+                                                    "description": "用户token",
+                                                    "type": "string"
+                                                },
+                                                "type": {
+                                                    "description": "类型",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "timestamp": {
+                                            "description": "服务器响应的时间戳",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/{type}/login-out": {
+            "post": {
+                "tags": [
+                    "用户认证"
+                ],
+                "summary": "退出登录",
+                "operationId": "eea2c9778a137c79b7452f701baff17e",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "type"
+                                ],
+                                "properties": {
+                                    "type": {
+                                        "description": "类型[teacher:教师,student:学生]",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "description": "返回码",
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "description": "错误信息",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "返回数据",
+                                            "type": "object"
+                                        },
+                                        "timestamp": {
+                                            "description": "服务器响应的时间戳",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/teacher/student_list": {
+            "get": {
+                "tags": [
+                    "课程管理"
+                ],
+                "summary": "学生列表",
+                "operationId": "55455eda2a105269c0c86fad7ce913d1",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "页数"
+                    },
+                    {
+                        "name": "page_size",
+                        "in": "query",
+                        "description": "每页数量"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "description": "返回码",
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "description": "错误信息",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "返回数据",
+                                            "properties": {
+                                                "meta": {
+                                                    "description": "元信息",
+                                                    "properties": {
+                                                        "count": {
+                                                            "description": "当前页的项目数",
+                                                            "type": "integer"
+                                                        },
+                                                        "perPage": {
+                                                            "description": "每页显示的项目数",
+                                                            "type": "integer"
+                                                        },
+                                                        "currentPage": {
+                                                            "description": "当前页码",
+                                                            "type": "integer"
+                                                        },
+                                                        "lastPage": {
+                                                            "description": "最后一页的页码",
+                                                            "type": "integer"
+                                                        },
+                                                        "total": {
+                                                            "description": "总数",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "list": {
+                                                    "description": "数据列表",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "description": "唯一标识",
+                                                                "type": "integer"
+                                                            },
+                                                            "name": {
+                                                                "description": "姓名",
+                                                                "type": "string"
+                                                            },
+                                                            "email": {
+                                                                "description": "邮箱",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "timestamp": {
+                                            "description": "服务器响应的时间戳",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/teacher/get_not_course_student_list": {
+            "get": {
+                "tags": [
+                    "课程管理"
+                ],
+                "summary": "获取未选修指定科目的学生列表",
+                "operationId": "233ad6e75ca7601d7ec5a99846656d21",
+                "parameters": [
+                    {
+                        "name": "course_id",
+                        "in": "query",
+                        "description": "课程id"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "页数"
+                    },
+                    {
+                        "name": "page_size",
+                        "in": "query",
+                        "description": "每页数量"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "description": "返回码",
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "description": "错误信息",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "返回数据",
+                                            "properties": {
+                                                "meta": {
+                                                    "description": "元信息",
+                                                    "properties": {
+                                                        "count": {
+                                                            "description": "当前页的项目数",
+                                                            "type": "integer"
+                                                        },
+                                                        "perPage": {
+                                                            "description": "每页显示的项目数",
+                                                            "type": "integer"
+                                                        },
+                                                        "currentPage": {
+                                                            "description": "当前页码",
+                                                            "type": "integer"
+                                                        },
+                                                        "lastPage": {
+                                                            "description": "最后一页的页码",
+                                                            "type": "integer"
+                                                        },
+                                                        "total": {
+                                                            "description": "总数",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "list": {
+                                                    "description": "数据列表",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "description": "唯一标识",
+                                                                "type": "integer"
+                                                            },
+                                                            "name": {
+                                                                "description": "姓名",
+                                                                "type": "string"
+                                                            },
+                                                            "email": {
+                                                                "description": "邮箱",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "timestamp": {
+                                            "description": "服务器响应的时间戳",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/teacher/get_course_student_list": {
+            "get": {
+                "tags": [
+                    "课程管理"
+                ],
+                "summary": "获取选修指定科目的学生列表",
+                "operationId": "2ff3d346a03ebd7599546544d3299a45",
+                "parameters": [
+                    {
+                        "name": "course_id",
+                        "in": "query",
+                        "description": "课程id"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "页数"
+                    },
+                    {
+                        "name": "page_size",
+                        "in": "query",
+                        "description": "每页数量"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "description": "返回码",
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "description": "错误信息",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "返回数据",
+                                            "properties": {
+                                                "meta": {
+                                                    "description": "元信息",
+                                                    "properties": {
+                                                        "count": {
+                                                            "description": "当前页的项目数",
+                                                            "type": "integer"
+                                                        },
+                                                        "perPage": {
+                                                            "description": "每页显示的项目数",
+                                                            "type": "integer"
+                                                        },
+                                                        "currentPage": {
+                                                            "description": "当前页码",
+                                                            "type": "integer"
+                                                        },
+                                                        "lastPage": {
+                                                            "description": "最后一页的页码",
+                                                            "type": "integer"
+                                                        },
+                                                        "total": {
+                                                            "description": "总数",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "list": {
+                                                    "description": "数据列表",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "description": "唯一标识",
+                                                                "type": "integer"
+                                                            },
+                                                            "name": {
+                                                                "description": "姓名",
+                                                                "type": "string"
+                                                            },
+                                                            "email": {
+                                                                "description": "邮箱",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "timestamp": {
+                                            "description": "服务器响应的时间戳",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/student/course_list": {
+            "get": {
+                "tags": [
+                    "我的课程"
+                ],
+                "summary": "获取当前用户所选修的课程",
+                "operationId": "08c3823e25cf86774c4d6e5f3321a312",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "页数"
+                    },
+                    {
+                        "name": "page_size",
+                        "in": "query",
+                        "description": "每页数量"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "description": "返回码",
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "description": "错误信息",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "返回数据",
+                                            "properties": {
+                                                "meta": {
+                                                    "description": "元信息",
+                                                    "properties": {
+                                                        "count": {
+                                                            "description": "当前页的项目数",
+                                                            "type": "integer"
+                                                        },
+                                                        "perPage": {
+                                                            "description": "每页显示的项目数",
+                                                            "type": "integer"
+                                                        },
+                                                        "currentPage": {
+                                                            "description": "当前页码",
+                                                            "type": "integer"
+                                                        },
+                                                        "lastPage": {
+                                                            "description": "最后一页的页码",
+                                                            "type": "integer"
+                                                        },
+                                                        "total": {
+                                                            "description": "总数",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "list": {
+                                                    "description": "数据列表",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "course_id": {
+                                                                "description": "课程id",
+                                                                "type": "integer"
+                                                            },
+                                                            "course": {
+                                                                "description": "课程详情",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "description": "唯一标识",
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "date": {
+                                                                        "description": "日期",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "course_name": {
+                                                                        "description": "课程名称",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "cost": {
+                                                                        "description": "费用",
+                                                                        "type": "string"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "timestamp": {
+                                            "description": "服务器响应的时间戳",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "Authorization-Bearer": {
+                "type": "http",
+                "name": "Authorization",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "Bearer"
+            }
+        }
+    }
+}
