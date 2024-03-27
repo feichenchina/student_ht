@@ -69,35 +69,24 @@
             }
         },
         "/api/teacher/list_bill": {
-            "post": {
+            "get": {
                 "tags": [
                     "账单管理"
                 ],
                 "summary": "账单列表",
-                "operationId": "7b800a349e2150125a129aa438885288",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "page_size",
-                                    "page"
-                                ],
-                                "properties": {
-                                    "page_size": {
-                                        "description": "每页显示几条信息",
-                                        "type": "integer"
-                                    },
-                                    "page": {
-                                        "description": "当前显示第几页",
-                                        "type": "integer"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
+                "operationId": "e87eb91f5e25397c08acb344d5a25c1b",
+                "parameters": [
+                    {
+                        "name": "page_size",
+                        "in": "query",
+                        "description": "每页显示几条信息"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "当前显示第几页"
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -387,6 +376,129 @@
                                                                             }
                                                                         },
                                                                         "type": "object"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "timestamp": {
+                                            "description": "服务器响应的时间戳",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/teacher/get_student_bill_status_list": {
+            "get": {
+                "tags": [
+                    "账单管理"
+                ],
+                "summary": "学生账单支付情况列表",
+                "operationId": "668986bcf0f681f12a37dd078e4c685b",
+                "parameters": [
+                    {
+                        "name": "page_size",
+                        "in": "query",
+                        "description": "每页显示几条信息"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "当前显示第几页"
+                    },
+                    {
+                        "name": "bill_id",
+                        "in": "query",
+                        "description": "账单id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "description": "返回码",
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "description": "错误信息",
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "description": "返回数据",
+                                            "properties": {
+                                                "meta": {
+                                                    "description": "元信息",
+                                                    "properties": {
+                                                        "count": {
+                                                            "description": "当前页的项目数",
+                                                            "type": "integer"
+                                                        },
+                                                        "perPage": {
+                                                            "description": "每页显示的项目数",
+                                                            "type": "integer"
+                                                        },
+                                                        "currentPage": {
+                                                            "description": "当前页码",
+                                                            "type": "integer"
+                                                        },
+                                                        "lastPage": {
+                                                            "description": "最后一页的页码",
+                                                            "type": "integer"
+                                                        },
+                                                        "total": {
+                                                            "description": "总数",
+                                                            "type": "integer"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "list": {
+                                                    "description": "数据列表",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "bill_id": {
+                                                                "description": "账单id",
+                                                                "type": "integer"
+                                                            },
+                                                            "student_id": {
+                                                                "description": "学生id",
+                                                                "type": "integer"
+                                                            },
+                                                            "status": {
+                                                                "description": "账单状态",
+                                                                "type": "integer"
+                                                            },
+                                                            "status_description": {
+                                                                "description": "账单状态-中文描述",
+                                                                "type": "string"
+                                                            },
+                                                            "student": {
+                                                                "description": "课程详情",
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "description": "学生id",
+                                                                        "type": "integer"
+                                                                    },
+                                                                    "name": {
+                                                                        "description": "学生姓名",
+                                                                        "type": "string"
                                                                     }
                                                                 },
                                                                 "type": "object"

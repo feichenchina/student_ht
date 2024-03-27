@@ -35,6 +35,8 @@ Route::middleware(['auth:teacher', 'scope:teacher'])->prefix('teacher')->group(f
     Route::post('add_bill', [BillController::class, 'addBill']); // 新增账单
     Route::get('list_bill', [BillController::class, 'listBill']); // 账单列表
     Route::get('send_bill', [BillController::class, 'sendBill']); // 发送账单
+
+    Route::get('get_student_bill_status_list', [BillController::class, 'getStudentBillStatusList']); // 获取还未选修指定课程的学生列表
 });
 
 /**

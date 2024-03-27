@@ -21,7 +21,12 @@ class Bill extends Base
     public function getStatusDescriptionAttribute()
     {
         $status = $this->getAttribute('status');
-        return self::STATUS[$status];
+        if (isset($status)) {
+            return self::STATUS[$status];
+        } else {
+            return "";
+        }
+
     }
 
     public function course()

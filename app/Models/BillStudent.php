@@ -12,6 +12,10 @@ class BillStudent extends Base
     {
         return $this->belongsTo(Bill::class);
     }
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 
     public const NOTPAY = 1;
     public const PAYED = 2;
@@ -24,6 +28,10 @@ class BillStudent extends Base
     public function getStatusDescriptionAttribute()
     {
         $status = $this->getAttribute('status');
-        return self::STATUS[$status];
+        if (isset($status)) {
+            return self::STATUS[$status];
+        } else {
+            return "";
+        }
     }
 }
